@@ -7,6 +7,7 @@ export default function MenuScreen() {
     <FlatList
       data={products}
       renderItem={({ item }) => <ProductListItem product={item} />}
+      numColumns={2}
     />
   );
 }

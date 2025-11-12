@@ -24,6 +24,7 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "white",
     padding: 10,
     borderRadius: 20,
