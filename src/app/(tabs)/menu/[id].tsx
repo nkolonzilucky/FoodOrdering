@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { defaultPizzaImage } from "@/components/ProductListItem";
 import products from "@assets/data/products";
 import { Stack, useLocalSearchParams } from "expo-router";
@@ -48,6 +49,7 @@ const ProductDetailsScreen = () => {
       </View>
 
       <Text style={styles.price}>${product.price}</Text>
+      <Button text="Add to cart" />
     </View>
   );
 };
