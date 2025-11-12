@@ -2,7 +2,7 @@ import { defaultPizzaImage } from "@/components/ProductListItem";
 import products from "@assets/data/products";
 import { Stack, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 const sizes = ["S", "M", "L", "XL"];
 
@@ -23,13 +23,14 @@ const ProductDetailsScreen = () => {
       <Text>Select size</Text>
       <View style={styles.sizes}>
         {sizes.map((size) => (
-          <View
+          <Pressable
             style={[
               styles.size,
               {
                 backgroundColor: selectedSize === size ? "gainsboro" : "white",
               },
             ]}
+            onPress={() => setSelectedSize(size)}
             key={size}
           >
             <Text
@@ -42,7 +43,7 @@ const ProductDetailsScreen = () => {
             >
               {size}
             </Text>
-          </View>
+          </Pressable>
         ))}
       </View>
 
