@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
     borderRadius: 20,
+    maxWidth: "50%",
     // margin: 10,
   },
   title: {
