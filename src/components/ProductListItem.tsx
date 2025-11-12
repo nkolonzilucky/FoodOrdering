@@ -1,5 +1,6 @@
 import Colors from "@/constants/Colors";
 import { Product } from "@/types";
+import { Link } from "expo-router";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export const defaultPizzaImage =
@@ -19,6 +20,7 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
       />
       <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
+      <Link href={"/product"}>Go to details</Link>
     </View>
   );
 };
