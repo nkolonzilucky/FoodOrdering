@@ -13,6 +13,11 @@ const ProductDetailsScreen = () => {
 
   const product = products.find((p) => p.id.toString() === id);
   if (!product) return <Text>Product not found</Text>;
+
+  const addToCart = () => {
+    console.warn("Adding to cart", selectedSize);
+  };
+
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: product?.name }} />
@@ -49,7 +54,7 @@ const ProductDetailsScreen = () => {
       </View>
 
       <Text style={styles.price}>${product.price}</Text>
-      <Button text="Add to cart" />
+      <Button onPress={addToCart} text="Add to cart" />
     </View>
   );
 };
@@ -67,6 +72,7 @@ const styles = StyleSheet.create({
   price: {
     fontWeight: "bold",
     fontSize: 18,
+    marginTop: "auto",
   },
   sizes: {
     flexDirection: "row",
