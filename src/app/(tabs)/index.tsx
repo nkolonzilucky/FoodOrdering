@@ -9,6 +9,7 @@ export default function MenuScreen() {
       renderItem={({ item }) => <ProductListItem product={item} />}
       numColumns={2}
       contentContainerStyle={{ gap: 10 }}
+      columnWrapperStyle={{ gap: 10 }}
     />
   );
 }
