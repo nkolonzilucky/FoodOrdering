@@ -28,16 +28,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
     borderRadius: 20,
+    margin: 10,
   },
   title: {
     fontSize: 18,
     fontWeight: "600",
     marginVertical: 10,
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
   price: {
     color: Colors.light.tint,
