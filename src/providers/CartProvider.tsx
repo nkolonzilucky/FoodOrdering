@@ -17,14 +17,22 @@ const CartContext = createContext<CartType>({
 const CartProvider = ({ children }: PropsWithChildren) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const addItem = (product: Product, size: PizzaSize) => {
-    const newCartItem: CartItem = {
-      id: randomUUID(),
-      product,
-      product_id: product.id,
-      size,
-      quantity: 1,
-    };
-    setItems([newCartItem, ...items]);
+    const existingItem = items.find(
+      (item) => item.product.id === product.id && item.size === size
+    );
+
+    if (existingItem) {
+      updateQuantity(existingItem.id, 1);
+    } else {
+      const newCartItem: CartItem = {
+        id: randomUUID(),
+        product,
+        product_id: product.id,
+        size,
+        quantity: 1,
+      };
+      setItems([newCartItem, ...items]);
+    }
   };
 
   const updateQuantity = (itemId: CartItem["id"], amount: -1 | 1) => {
