@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const CartContext = createContext({});
+const CartContext = createContext({});
 
 const CartProvider = ({ children }) => {
   return (
