@@ -1,4 +1,5 @@
 import Colors from "@/constants/Colors";
+import { useCart } from "@/providers/CartProvider";
 import { CartItem } from "@/types";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
@@ -10,7 +11,7 @@ type CartListItemProps = {
 };
 
 const CartListItem = ({ cartItem }: CartListItemProps) => {
-//   const { updateQuantity } = useCart();
+  const { updateQuantity } = useCart();
   return (
     <View style={styles.container}>
       <Image
@@ -27,14 +28,14 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
       </View>
       <View style={styles.quantitySelector}>
         <FontAwesome
-        //   onPress={() => updateQuantity(cartItem.id, 1)}
+          onPress={() => updateQuantity(cartItem.id, -1)}
           name="minus"
           color={"gray"}
           style={{ padding: 5 }}
         />
         <Text style={styles.quantity}>{cartItem.quantity}</Text>
         <FontAwesome
-        //   onPress={() => updateQuantity(cartItem.id, 1)}
+          onPress={() => updateQuantity(cartItem.id, 1)}
           name="plus"
           color={"gray"}
           style={{ padding: 5 }}
