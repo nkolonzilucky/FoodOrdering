@@ -11,6 +11,7 @@ const CartScreen = () => {
       <FlatList
         data={items}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
+        contentContainerStyle={{ padding: 10, gap: 10 }}
       />
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
