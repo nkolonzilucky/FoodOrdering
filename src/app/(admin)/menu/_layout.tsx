@@ -8,11 +8,11 @@ export default function MenuStack() {
     <Stack
       screenOptions={{
         headerRight: () => (
-          <Link href={"/cart"} asChild>
+          <Link href={"/"} asChild>
             <Pressable>
               {({ pressed }) => (
                 <FontAwesome
-                  name="shopping-cart"
+                  name="plus-square-o"
                   size={25}
                   color={Colors.light.tint}
                   style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
