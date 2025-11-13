@@ -24,6 +24,8 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     setItems([newCartItem, ...items]);
   };
 
+  console.log(items);
+
   return (
     <CartContext.Provider value={{ items, addItem }}>
       {children}
