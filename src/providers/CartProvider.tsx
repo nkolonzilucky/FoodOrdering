@@ -27,10 +27,14 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     setItems([newCartItem, ...items]);
   };
 
+  const updateQuantity = (itemId: CartItem["id"], amount: -1 | 1) => {
+    console.log(itemId, amount);
+  };
+
   console.log(items);
 
   return (
-    <CartContext.Provider value={{ items, addItem }}>
+    <CartContext.Provider value={{ items, addItem, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );
