@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import CartListItem from "@/components/CartListItem";
 import { useCart } from "@/providers/CartProvider";
 import { StatusBar } from "expo-status-bar";
@@ -13,6 +14,9 @@ const CartScreen = () => {
         renderItem={({ item }) => <CartListItem cartItem={item} />}
         contentContainerStyle={{ padding: 10, gap: 10 }}
       />
+
+      <Button text="Checkout" />
+
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>
