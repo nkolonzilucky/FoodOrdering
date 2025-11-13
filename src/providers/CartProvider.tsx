@@ -32,6 +32,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     const updatedItems = items.map((item) =>
       item.id !== itemId ? item : { ...item, quantity: item.quantity + amount }
     );
+    setItems(updatedItems);
   };
 
   console.log(items);
