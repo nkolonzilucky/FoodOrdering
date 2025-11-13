@@ -8,11 +8,11 @@ import { FlatList, Platform, View } from "react-native";
 const CartScreen = () => {
   const { items } = useCart();
   return (
-    <View>
+    <View style={{ padding: 10 }}>
       <FlatList
         data={items}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
-        contentContainerStyle={{ padding: 10, gap: 10 }}
+        contentContainerStyle={{ gap: 10 }}
       />
 
       <Button text="Checkout" />
