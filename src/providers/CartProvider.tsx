@@ -1,4 +1,10 @@
+import { CartItem, PizzaSize, Product } from "@/types";
 import { createContext, PropsWithChildren, useContext } from "react";
+
+type CartType = {
+  items: CartItem[];
+  addItem: (product: Product, size: PizzaSize) => void;
+};
 
 const CartContext = createContext({});
 
