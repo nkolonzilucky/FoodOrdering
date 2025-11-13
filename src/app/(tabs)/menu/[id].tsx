@@ -15,7 +15,7 @@ const ProductDetailsScreen = () => {
   if (!product) return <Text>Product not found</Text>;
 
   const addToCart = () => {
-    console.warn("Adding to cart", selectedSize);
+    console.warn("Adding to cart ", selectedSize);
   };
 
   return (

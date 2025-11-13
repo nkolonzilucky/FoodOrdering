@@ -9,9 +9,9 @@ type ButtonProps = {
 const Button = forwardRef<View | null, ButtonProps>(({ text, ...pressableProps }, ref) => {
   return (
     <Pressable ref={ref} {...pressableProps} style={styles.container}>
-      <Text>{text}</Text>
+      <Text style={styles.text}>{text}</Text>
     </Pressable>
-  )
+  );
 })
 
 const styles = StyleSheet.create({
