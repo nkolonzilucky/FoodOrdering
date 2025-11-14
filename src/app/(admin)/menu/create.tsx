@@ -11,7 +11,7 @@ const CreateProductScreen = () => {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const { id } = useLocalSearchParams();
-
+  const isUpdating = !!id; //If id is defined, isUpdating is true
   const [errors, setErrors] = useState("");
 
   const resetFields = () => {
