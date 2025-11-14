@@ -7,7 +7,11 @@ const CreateProductScreen = () => {
       <Text style={styles.label}>create</Text>
       <TextInput placeholder="Name" style={styles.input} />
       <Text style={styles.label}>price ($)</Text>
-      <TextInput placeholder="9.99" style={styles.input} />
+      <TextInput
+        placeholder="9.99"
+        style={styles.input}
+        keyboardType="numeric"
+      />
     </View>
   );
 };
