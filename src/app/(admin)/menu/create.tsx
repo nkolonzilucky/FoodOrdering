@@ -37,15 +37,6 @@ const CreateProductScreen = () => {
     return true;
   };
 
-  const onCreate = () => {
-    if (!validateInput()) {
-      return;
-    }
-    console.warn("Creating product");
-    //Save in the database
-    resetFields();
-  };
-
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -60,6 +51,32 @@ const CreateProductScreen = () => {
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
+  };
+
+  const onSubmit = () => {
+    if (isUpdating) {
+      onUpdate();
+    } else {
+      onCreate();
+    }
+  };
+
+  const onCreate = () => {
+    if (!validateInput()) {
+      return;
+    }
+    console.warn("Creating product: ", name);
+    //Save in the database
+    resetFields();
+  };
+
+  const onUpdate = () => {
+    if (!validateInput()) {
+      return;
+    }
+    console.warn("Updating product");
+    //Save in the database
+    resetFields();
   };
 
   return (
@@ -92,7 +109,7 @@ const CreateProductScreen = () => {
         keyboardType="numeric"
       />
       <Text style={{ color: "red" }}>{errors}</Text>
-      <Button onPress={onCreate} text={isUpdating ? "Update" : "Create"} />
+      <Button onPress={onSubmit} text={isUpdating ? "Update" : "Create"} />
     </View>
   );
 };
