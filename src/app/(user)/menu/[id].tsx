@@ -12,6 +12,7 @@ const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams();
   const { addItem } = useCart();
+  console.log("Hi from app/(user)/menu/[id].tsx");
 
   const [selectedSize, setSelectedSize] = useState<PizzaSize>("M");
 

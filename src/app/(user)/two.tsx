@@ -4,6 +4,7 @@ import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 
 export default function TabTwoScreen() {
+  console.log("Hi from app/(user)/two.tsx");
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>
