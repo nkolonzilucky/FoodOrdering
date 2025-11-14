@@ -79,6 +79,9 @@ const CreateProductScreen = () => {
     resetFields();
   };
 
+  const confirmDelete = () => {
+    console.warn("confirming the deletion");
+  };
   return (
     <View style={styles.container}>
       <Stack.Screen
@@ -110,6 +113,11 @@ const CreateProductScreen = () => {
       />
       <Text style={{ color: "red" }}>{errors}</Text>
       <Button onPress={onSubmit} text={isUpdating ? "Update" : "Create"} />
+      {isUpdating && (
+        <Text onPress={confirmDelete} style={styles.textButton}>
+          Delete
+        </Text>
+      )}
     </View>
   );
 };
