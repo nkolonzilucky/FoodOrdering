@@ -79,6 +79,10 @@ const CreateProductScreen = () => {
     resetFields();
   };
 
+  const onDelete = () => {
+    console.warn("DELETE!!!!");
+  };
+
   const confirmDelete = () => {
     console.warn("confirming the deletion");
   };
