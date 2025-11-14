@@ -1,10 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const CreateProductScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>CreateProductScreen</Text>
+      <Text style={styles.label}>create</Text>
+      <TextInput placeholder="Name" style={styles.input} />
+      <Text style={styles.label}>price ($)</Text>
+      <TextInput placeholder="9.99" style={styles.input} />
     </View>
   );
 };
@@ -14,6 +17,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 10,
+    gap: 10,
+  },
+  input: {
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 5,
+    marginBottom: 20,
+  },
+  label: {
+    color: "gray",
+    fontSize: 16,
   },
 });
 
