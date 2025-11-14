@@ -66,7 +66,7 @@ const CreateProductScreen = () => {
     <View style={styles.container}>
       <Stack.Screen
         options={{
-          title: "Create Product",
+          title: isUpdating ? "Update Product" : "Create Product",
         }}
       />
       <Image
@@ -92,7 +92,7 @@ const CreateProductScreen = () => {
         keyboardType="numeric"
       />
       <Text style={{ color: "red" }}>{errors}</Text>
-      <Button onPress={onCreate} text="Create" />
+      <Button onPress={onCreate} text={isUpdating ? "Update" : "Create"} />
     </View>
   );
 };
