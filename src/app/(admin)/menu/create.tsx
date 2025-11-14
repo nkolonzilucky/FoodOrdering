@@ -5,38 +5,63 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const CreateProductScreen = () => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+    const [price, setPrice] = useState("");
 
-  const resetFields = () => {
-    setName("");
-    setPrice("");
-  };
-  const onCreate = () => {
-    console.log("Creating product");
-    //Save in the database
-    resetFields();
-  };
+    const [errors, setErrors] = useState("");
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>create</Text>
-      <TextInput
-        value={name}
-        onChangeText={setName}
-        placeholder="Name"
-        style={styles.input}
-      />
-      <Text style={styles.label}>price ($)</Text>
-      <TextInput
-        value={price}
-        onChangeText={setPrice}
-        placeholder="9.99"
-        style={styles.input}
-        keyboardType="numeric"
-      />
-      <Button onPress={onCreate} text="Create" />
-    </View>
-  );
+    const resetFields = () => {
+      setName("");
+      setPrice("");
+    };
+
+    const validateInput = () => {
+      setErrors("");
+      if (!name) {
+        setErrors("Name is required");
+        return false;
+      }
+      if (!price) {
+        setErrors("Price is required");
+        return false;
+      }
+
+      if (isNaN(parseFloat(price))) {
+        setErrors("Price is not a number");
+        return false;
+      }
+      return true;
+    };
+
+    const onCreate = () => {
+      if (!validateInput()) {
+        return;
+      }
+      console.warn("Creating product");
+      //Save in the database
+      resetFields();
+    };
+
+    return (
+      <View style={styles.container}>
+        <Text style={styles.label}>create</Text>
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Name"
+          style={styles.input}
+        />
+        <Text style={styles.label}>price ($)</Text>
+        <TextInput
+          value={price}
+          onChangeText={setPrice}
+          placeholder="9.99"
+          style={styles.input}
+          keyboardType="numeric"
+        />
+        <Text style={{ color: "red" }}>{errors}</Text>
+        <Button onPress={onCreate} text="Create" />
+      </View>
+    );
 };
 
 const styles = StyleSheet.create({
