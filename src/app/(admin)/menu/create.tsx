@@ -1,7 +1,12 @@
+import Button from "@/components/Button";
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const CreateProductScreen = () => {
+  const onCreate = () => {
+    console.log("Creating product");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>create</Text>
@@ -12,6 +17,7 @@ const CreateProductScreen = () => {
         style={styles.input}
         keyboardType="numeric"
       />
+      <Button onPress={onCreate} text="Create" />
     </View>
   );
 };
