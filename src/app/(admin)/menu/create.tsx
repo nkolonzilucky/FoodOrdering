@@ -2,11 +2,19 @@ import Button from "@/components/Button";
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
+
 const CreateProductScreen = () => {
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+
+  const resetFields = () => {
+    setName("");
+    setPrice("");
+  };
   const onCreate = () => {
     console.log("Creating product");
+    //Save in the database
+    resetFields();
   };
 
   return (
