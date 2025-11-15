@@ -23,18 +23,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     backgroundColor: "white",
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 10,
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 8,
   },
   OrderNumberAndDurationContainer: {
     flex: 1,
-    gap: 10,
+    gap: 6,
   },
   orderNumber: {
-    fontSize: 20,
-    fontWeight: "black",
+    fontSize: 18,
+    fontWeight: "bold",
     color: "black",
   },
   duration: {
@@ -43,6 +44,8 @@ const styles = StyleSheet.create({
   },
   status: {
     color: "black",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
 export default OrderListItem;

@@ -6,7 +6,11 @@ import orders from '@assets/data/orders';
 export default function OrdersScreen() {
   console.log("Hi from app/(user)/two.tsx");
   return (
-    <FlatList data={orders} renderItem={({ order}) => <OrderListItem order={order} />} />
+    <FlatList
+      data={orders}
+      renderItem={({ item }) => <OrderListItem order={item} />}
+      contentContainerStyle={{ margin: 10 }}
+    />
   );
 }
 
