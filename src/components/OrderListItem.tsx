@@ -1,17 +1,21 @@
 import { Order } from "@/types";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-type OrderProps = {
-    order: Order,
-}
+dayjs.extend(relativeTime);
 
-const OrderListItem = ({order}: OrderProps) => {
+type OrderProps = {
+  order: Order;
+};
+
+const OrderListItem = ({ order }: OrderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.OrderNumberAndDurationContainer}>
         <Text style={styles.orderNumber}> Order #{order.id}</Text>
-        <Text style={styles.duration}>{order.created_at} hours ago</Text>
+        <Text style={styles.duration}>{dayjs(order.created_at).fromNow()}</Text>
       </View>
       <Text style={styles.status}>{order.status}</Text>
     </View>
