@@ -1,7 +1,7 @@
 import { Order } from "@/types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Link, useSegments } from "expo-router";
+import { useRouter, useSegments } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -13,18 +13,26 @@ type OrderProps = {
 
 const OrderListItem = ({ order }: OrderProps) => {
   const segments = useSegments();
+  const router = useRouter();
+  let pathToOrder = "";
+  if (segments[0] === "(user)") {
+    pathToOrder = `./src/app/(user)/orders/${order.id}`;
+    console.log(pathToOrder);
+  } else if (segments[0] === "(admin)") {
+    pathToOrder = `./src/app/(admin)/orders/${order.id}`;
+    console.log(pathToOrder);
+  }
   return (
-    <Link href={`/${segments[0]}/orders/${order.id}`} asChild>
-      <Pressable style={styles.container}>
-        <View style={styles.OrderNumberAndDurationContainer}>
-          <Text style={styles.orderNumber}> Order #{order.id}</Text>
-          <Text style={styles.duration}>
-            {dayjs(order.created_at).fromNow()}
-          </Text>
-        </View>
-        <Text style={styles.status}>{order.status}</Text>
-      </Pressable>
-    </Link>
+    <Pressable
+      style={styles.container}
+      onPress={() => router.push(`/(user)/orders/${order.id}`)}
+    >
+      <View style={styles.OrderNumberAndDurationContainer}>
+        <Text style={styles.orderNumber}> Order #{order.id}</Text>
+        <Text style={styles.duration}>{dayjs(order.created_at).fromNow()}</Text>
+      </View>
+      <Text style={styles.status}>{order.status}</Text>
+    </Pressable>
   );
 };
 
