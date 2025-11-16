@@ -14,7 +14,7 @@ type OrderProps = {
 const OrderListItem = ({ order }: OrderProps) => {
   const segments = useSegments();
   return (
-    <Link href={`./src/app/${segments[0]}/orders/${order.id}`} asChild>
+    <Link href={`/${segments[0]}/orders/${order.id}`} asChild>
       <Pressable style={styles.container}>
         <View style={styles.OrderNumberAndDurationContainer}>
           <Text style={styles.orderNumber}> Order #{order.id}</Text>

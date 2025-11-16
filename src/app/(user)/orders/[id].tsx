@@ -8,7 +8,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 dayjs.extend(relativeTime);
 
-const OrderScreen = () => {
+const OrderDetailsScreen = () => {
   const { id } = useLocalSearchParams();
   const order = orders.find((order) => order.id.toString() === id);
   return (

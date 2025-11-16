@@ -1,12 +1,12 @@
-import { Stack } from 'expo-router'
-import React from 'react'
+import { Stack } from "expo-router";
+import React from "react";
 
 const OrdersLayout = () => {
   return (
     <Stack>
-      <Stack.Screen name="orders" options={{ title: "Orders" }} />
+      <Stack.Screen name="index" options={{ title: "Orders" }} />
     </Stack>
   );
-}
+};
 
-export default OrdersLayout
+export default OrdersLayout;
