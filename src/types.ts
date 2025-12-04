@@ -37,7 +37,7 @@ export type Order = {
 export type OrderItem = {
   id: number;
   product_id: number;
-  products: Product;
+  product: Product;
   order_id: number;
   size: PizzaSize;
   quantity: number;
