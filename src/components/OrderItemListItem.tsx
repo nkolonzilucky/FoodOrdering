@@ -29,14 +29,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    borderRadius: 12,
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
-    },
-    image: {
-        width: 50,
-        aspectRatio: 1
-    },
+  },
+  image: {
+    width: 50,
+    aspectRatio: 1,
+  },
   namepricesize: {
     flex: 1,
     gap: 10,
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   quantity: {
+    alignSelf: "center",
     fontWeight: "bold",
     color: "black",
   },
