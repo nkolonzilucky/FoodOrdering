@@ -1,4 +1,5 @@
 import OrderItemListItem from "@/components/OrderItemListItem";
+import OrderListItem from "@/components/OrderListItem";
 import orders from "@assets/data/orders";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -16,17 +17,11 @@ const OrderDetailsScreen = () => {
   console.log(order.order_items);
   return (
     <View style={styles.outerContainer}>
-      <View style={styles.innerContainer}>
-        <View style={styles.orderStatus}>
-          <Text style={styles.order}>Order# {order.id}</Text>
-          <Text style={styles.timestamp}>{dayjs().to(order.created_at)}</Text>
-        </View>
-        <Text style={styles.status}>{order.status}</Text>
-      </View>
       <FlatList
         data={order.order_items}
         renderItem={({ item }) => <OrderItemListItem orderItem={item} />}
         contentContainerStyle={{ gap: 10, margin: 10, borderRadius: 20 }}
+        ListHeaderComponent={() => <OrderListItem order={order} />}
       />
     </View>
   );

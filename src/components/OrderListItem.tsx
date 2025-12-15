@@ -1,9 +1,9 @@
 import { Order } from "@/types";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { Link, useSegments } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
@@ -28,14 +28,14 @@ const OrderListItem = ({ order }: OrderListItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
     borderRadius: 12,
     padding: 10,
-    marginBottom: 10,
+    marginBlock: 10,
   },
   orderStatus: {
     flex: 1,
