@@ -1,5 +1,6 @@
 import OrderItemListItem from "@/components/OrderItemListItem";
 import OrderListItem from "@/components/OrderListItem";
+import StatusSelectorListItem from "@/components/StatusSelectorListItem";
 import orders from "@assets/data/orders";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -22,6 +23,7 @@ const OrderDetailsScreen = () => {
         renderItem={({ item }) => <OrderItemListItem orderItem={item} />}
         contentContainerStyle={{ gap: 10, margin: 10, borderRadius: 20 }}
         ListHeaderComponent={() => <OrderListItem order={order} />}
+        ListFooterComponent={() => <StatusSelectorListItem order={order} />}
       />
     </View>
   );
