@@ -4,7 +4,7 @@ import React from 'react';
 const OrdersStack = () => {
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ title: "Orders" }} />
+      <Stack.Screen name="list" options={{ headerShown: false }} />
       <Stack.Screen name="[id]" options={{ title: "Orders Details" }} />
     </Stack>
   );
