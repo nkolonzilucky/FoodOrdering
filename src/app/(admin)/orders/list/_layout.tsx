@@ -7,8 +7,10 @@ const TopTabs = withLayoutContext(createMaterialTopTabNavigator().Navigator);
 
 const OrderListNavigator = () => {
   return (
-    <SafeAreaView edges={['top']} style={{flex:1, backgroundColor: 'white'}}>
-      <TopTabs />
+    <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "white" }}>
+      <TopTabs>
+        <TopTabs.Screen name="index" options={{ title: "Active" }} />
+      </TopTabs>
     </SafeAreaView>
   );
 };
