@@ -45,7 +45,6 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     setItems(updatedItems.filter((item) => item.quantity > 0));
   };
 
-  console.log(items);
 
   const total = items
     .map((item) => item.product.price * item.quantity)
