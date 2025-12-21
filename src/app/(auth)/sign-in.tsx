@@ -12,7 +12,7 @@ const SignInScreen = () => {
 
   async function signInWithPassword() {
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
