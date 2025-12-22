@@ -1,10 +1,20 @@
 import Button from "@/components/Button";
-import { Link, Stack } from "expo-router";
+import { useAuth } from "@/providers/AuthProvider";
+import { Link, Redirect, Stack } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 
 const index = () => {
-  console.log("Hi from app/index.tsx");
+  const { session, loading } = useAuth();
+
+  if (loading) {
+    return <ActivityIndicator />;
+  }
+
+  if (!session) {
+    return <Redirect href={"/sign-in"} />;
+  }
+
   return (
     <View style={{ flex: 1, justifyContent: "center", padding: 10 }}>
       <Stack.Screen options={{ headerShown: false }} />
