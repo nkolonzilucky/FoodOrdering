@@ -28,7 +28,10 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       setLoading(false);
     };
     fetchSession();
-  });
+    supabase.auth.onAuthStateChange((_event: any, session: any) => {
+      setSession(session);
+    });
+  }, []);
   return (
     <AuthContext.Provider value={{ session, loading }}>
       {children}
