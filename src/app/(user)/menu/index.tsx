@@ -12,7 +12,11 @@ export default function MenuScreen() {
   //   fetchProducts();
   // }, []);
 
-  const { data, error, isLoading } = useQuery({
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const { data, error } = await supabase.from("products").select("*");
@@ -33,7 +37,7 @@ export default function MenuScreen() {
 
   return (
     <FlatList
-      data={data}
+      data={products}
       renderItem={({ item }) => <ProductListItem product={item} />}
       numColumns={2}
       contentContainerStyle={{ gap: 10, padding: 10 }}
