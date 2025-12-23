@@ -5,7 +5,14 @@ import { useCart } from "@/providers/CartProvider";
 import { PizzaSize } from "@/types";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
@@ -21,13 +28,19 @@ const ProductDetailsScreen = () => {
 
   const router = useRouter();
 
-  if (!product) return <Text>Product not found</Text>;
-
   const addToCart = () => {
     if (!product) return;
     addItem(product, selectedSize);
     router.push("/cart");
   };
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Failed to fetch product</Text>;
+  }
 
   return (
     <View style={styles.container}>
