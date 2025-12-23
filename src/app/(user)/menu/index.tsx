@@ -1,20 +1,39 @@
 import { ProductListItem } from "@/components/ProductListItem";
 import { supabase } from "@/lib/supabase";
-import products from "@assets/data/products";
-import { useEffect } from "react";
-import { FlatList } from "react-native";
+import { useQuery } from "@tanstack/react-query";
+import { ActivityIndicator, FlatList, Text } from "react-native";
 
 export default function MenuScreen() {
-  useEffect(() => {
-    const fetchProducts = async () => {
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     const { data, error } = await supabase.from("products").select("*");
+  //     console.log("fetchProduct", data);
+  //   };
+  //   fetchProducts();
+  // }, []);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
       const { data, error } = await supabase.from("products").select("*");
-      console.log("fetchProduct", data);
-    };
-    fetchProducts();
-  }, []);
+      if (error) {
+        throw new Error(error.message);
+      }
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Failed to fetch products</Text>;
+  }
+
   return (
     <FlatList
-      data={products}
+      data={data}
       renderItem={({ item }) => <ProductListItem product={item} />}
       numColumns={2}
       contentContainerStyle={{ gap: 10, padding: 10 }}
