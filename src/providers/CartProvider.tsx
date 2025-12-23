@@ -38,7 +38,6 @@ const CartProvider = ({ children }: PropsWithChildren) => {
   };
 
   const updateQuantity = (itemId: CartItem["id"], amount: -1 | 1) => {
-    // console.log(itemId, amount);
     const updatedItems = items.map((item) =>
       item.id !== itemId ? item : { ...item, quantity: item.quantity + amount }
     );

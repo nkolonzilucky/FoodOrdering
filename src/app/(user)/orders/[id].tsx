@@ -13,7 +13,6 @@ const OrderDetailsScreen = () => {
   const order = orders.find((o) => o.id.toString() === id);
   if (!order) return <Text>Order not found</Text>;
 
-  console.log(order.order_items);
   return (
     <View style={styles.outerContainer}>
       <View style={styles.innerContainer}>

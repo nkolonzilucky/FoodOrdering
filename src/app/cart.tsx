@@ -7,7 +7,6 @@ import { FlatList, Platform, Text, View } from "react-native";
 
 const CartScreen = () => {
   const { items, total } = useCart();
-  console.log("Hi from app/cart.tsx");
   return (
     <View style={{ padding: 10 }}>
       <FlatList
