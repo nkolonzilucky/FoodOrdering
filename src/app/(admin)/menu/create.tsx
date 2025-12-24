@@ -70,7 +70,11 @@ const CreateProductScreen = () => {
     console.log("creating product", name);
 
     //Save in the database
-    insertProduct({ name, price: parseFloat(price), image });
+     insertProduct({
+       name,
+       price: parseFloat(price),
+       image,
+     });
     resetFields();
   };
 
