@@ -1,4 +1,9 @@
-import { useInsertProduct, useProduct, useUpdateProduct } from "@/api/products";
+import {
+  useDeleteProduct,
+  useInsertProduct,
+  useProduct,
+  useUpdateProduct,
+} from "@/api/products";
 import Button from "@/components/Button";
 import { defaultPizzaImage } from "@/components/ProductListItem";
 import Colors from "@/constants/Colors";
@@ -20,6 +25,7 @@ const CreateProductScreen = () => {
   const { mutate: insertProduct } = useInsertProduct();
   const { mutate: updateProduct } = useUpdateProduct();
   const { data: updatingProduct } = useProduct(id);
+  const { mutate: deleteProduct } = useDeleteProduct();
   const router = useRouter();
 
   useEffect(() => {
@@ -113,7 +119,12 @@ const CreateProductScreen = () => {
   };
 
   const onDelete = () => {
-    console.warn("DELETE!!!!");
+    deleteProduct(id, {
+      onSuccess() {
+        resetFields();
+        router.replace("/(admin)");
+      },
+    });
   };
 
   const confirmDelete = () => {
