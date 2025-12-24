@@ -1,3 +1,4 @@
+import { useInsertProduct } from "@/api/products";
 import Button from "@/components/Button";
 import { defaultPizzaImage } from "@/components/ProductListItem";
 import Colors from "@/constants/Colors";
@@ -13,6 +14,8 @@ const CreateProductScreen = () => {
   const { id } = useLocalSearchParams();
   const isUpdating = !!id; //If id is defined, isUpdating is true
   const [errors, setErrors] = useState("");
+
+  const { mutate: insertProduct } = useInsertProduct();
 
   const resetFields = () => {
     setName("");
@@ -46,8 +49,6 @@ const CreateProductScreen = () => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
@@ -65,8 +66,11 @@ const CreateProductScreen = () => {
     if (!validateInput()) {
       return;
     }
-    console.warn("Creating product: ", name);
+
+    console.log("creating product", name);
+
     //Save in the database
+    insertProduct({ name, price: parseFloat(price), image });
     resetFields();
   };
 
