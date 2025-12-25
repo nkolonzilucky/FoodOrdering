@@ -4,7 +4,11 @@ import React from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 const OrdersTab = () => {
-  const { data: orders, isLoading, error } = useAdminOrderList();
+  const {
+    data: orders,
+    isLoading,
+    error,
+  } = useAdminOrderList({ archived: false });
 
   if (isLoading) {
     return <ActivityIndicator />;

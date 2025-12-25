@@ -1,14 +1,31 @@
-import OrderListItem from '@/components/OrderListItem'
-import orders from '@assets/data/orders'
-import React from 'react'
-import { FlatList, View } from 'react-native'
+import { useAdminOrderList } from "@/api/orders";
+import OrderListItem from "@/components/OrderListItem";
+import React from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 const OrdersTab = () => {
+  const {
+    data: orders,
+    isLoading,
+    error,
+  } = useAdminOrderList({ archived: true });
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Failed to fetch orders</Text>;
+  }
   return (
     <View>
-      <FlatList data={orders} renderItem={({item}) => <OrderListItem order={item}/>} contentContainerStyle={{ margin:10}}  />
+      <FlatList
+        data={orders}
+        renderItem={({ item }) => <OrderListItem order={item} />}
+        contentContainerStyle={{ margin: 10 }}
+      />
     </View>
-  )
-}
+  );
+};
 
-export default OrdersTab
+export default OrdersTab;
