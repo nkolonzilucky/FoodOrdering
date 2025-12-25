@@ -1,17 +1,32 @@
+import { useOrderDetails } from "@/api/orders";
 import OrderItemListItem from "@/components/OrderItemListItem";
-import orders from "@assets/data/orders";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 dayjs.extend(relativeTime);
 
 const OrderDetailsScreen = () => {
-  const { id } = useLocalSearchParams();
-  const order = orders.find((o) => o.id.toString() === id);
-  if (!order) return <Text>Order not found</Text>;
+  const { id: idString } = useLocalSearchParams();
+  const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
+
+  const { data: order, isLoading, error } = useOrderDetails(id);
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Order not found</Text>;
+  }
 
   return (
     <View style={styles.outerContainer}>
