@@ -1,11 +1,11 @@
 import Colors from '@/constants/Colors';
-import { Order, OrderStatusList } from '@/types';
+import { OrderStatusList, Tables } from "@/types";
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 type OrderListItemProps = {
-    order: Order;
-}
+  order: Tables<"orders">;
+};
 
 const StatusSelectorListItem = ({order}: OrderListItemProps) => {
   return (
