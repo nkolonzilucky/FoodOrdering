@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { defaultPizzaImage } from "./ProductListItem";
 
 type OrderItemProp = {
-  orderItem: Tables<"order_items">;
+  orderItem: { products: Tables<"products"> } & Tables<"order_items">;
 };
 
 const OrderItemListItem = ({ orderItem }: OrderItemProp) => {
