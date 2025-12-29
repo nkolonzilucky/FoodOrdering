@@ -106,9 +106,14 @@ const CreateProductScreen = () => {
       return;
     }
     //Save in the database
+    const updatedFields = {
+      name: name,
+      price: parseFloat(price),
+      image: image,
+    };
 
     updateProduct(
-      { id, name, price: parseFloat(price), image },
+      { id, updatedFields },
       {
         onSuccess: () => {
           resetFields();

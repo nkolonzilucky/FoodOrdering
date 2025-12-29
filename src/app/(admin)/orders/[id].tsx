@@ -1,4 +1,4 @@
-import { useOrderDetails } from "@/api/orders";
+import { useOrderDetails, useUpdateOrder } from "@/api/orders";
 import OrderItemListItem from "@/components/OrderItemListItem";
 import OrderListItem from "@/components/OrderListItem";
 import StatusSelectorListItem from "@/components/StatusSelectorListItem";
@@ -21,6 +21,11 @@ const OrderDetailsScreen = () => {
   const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 
   const { data: order, isLoading, error } = useOrderDetails(id);
+  const { mutate: updateOrder } = useUpdateOrder();
+
+  const updateStatus = (status: string) => {
+    updateOrder({ id: id, updatedFields: { status: status } });
+  };
 
   if (isLoading) {
     return <ActivityIndicator />;
