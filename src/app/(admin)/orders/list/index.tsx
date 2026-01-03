@@ -1,8 +1,7 @@
 import { useAdminOrderList } from "@/api/orders";
+import { useInsertOrderSubscription } from "@/api/orders/subscriptions";
 import OrderListItem from "@/components/OrderListItem";
-import { supabase } from "@/lib/supabase";
-import { useQueryClient } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import React from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 const OrdersTab = () => {
@@ -12,25 +11,7 @@ const OrdersTab = () => {
     error,
   } = useAdminOrderList({ archived: false });
 
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    const ordersSubscription = supabase
-      .channel("custom-insert-channel")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "orders" },
-        (payload) => {
-          console.log("Change received!", payload);
-          queryClient.invalidateQueries({ queryKey: ["orders"] });
-        }
-      )
-      .subscribe();
-    // this will be called when unmounting the component
-    return () => {
-      ordersSubscription.unsubscribe();
-    };
-  }, []);
+  useInsertOrderSubscription();
 
   if (isLoading) {
     return <ActivityIndicator />;
