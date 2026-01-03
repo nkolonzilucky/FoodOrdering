@@ -1,4 +1,5 @@
 import { useOrderDetails } from "@/api/orders";
+import { useUpdateOrderSubscription } from "@/api/orders/subscriptions";
 import OrderItemListItem from "@/components/OrderItemListItem";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -19,12 +20,13 @@ const OrderDetailsScreen = () => {
   const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 
   const { data: order, isLoading, error } = useOrderDetails(id);
+  useUpdateOrderSubscription(id);
 
   if (isLoading) {
     return <ActivityIndicator />;
   }
 
-  if (error) {
+  if (error || !order) {
     return <Text>Order not found</Text>;
   }
 
