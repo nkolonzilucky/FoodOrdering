@@ -1,21 +1,22 @@
 import Colors from '@/constants/Colors';
 import { OrderStatusList, Tables } from "@/types";
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { Pressable, Text, View } from "react-native";
 
 type OrderListItemProps = {
   order: Tables<"orders">;
 };
 
-const StatusSelectorListItem = ({order}: OrderListItemProps) => {
+const StatusSelectorListItem = ({ order }: OrderListItemProps) => {
+  const [status, setStatus] = useState(order.status);
   return (
     <View>
       <Text style={{ fontWeight: "bold" }}>Status</Text>
       <View style={{ flexDirection: "row", gap: 5 }}>
-        {OrderStatusList.map((status) => (
+        {OrderStatusList.map((each_status) => (
           <Pressable
-            key={status}
-            onPress={() => (order.status = status)}
+            key={each_status}
+            onPress={() => setStatus(each_status)}
             style={{
               borderColor: Colors.light.tint,
               borderWidth: 1,
@@ -23,21 +24,21 @@ const StatusSelectorListItem = ({order}: OrderListItemProps) => {
               borderRadius: 5,
               marginVertical: 10,
               backgroundColor:
-                order.status === status ? Colors.light.tint : "transparent",
+                status === each_status ? Colors.light.tint : "transparent",
             }}
           >
             <Text
               style={{
-                color: order.status === status ? "white" : Colors.light.tint,
+                color: status === each_status ? "white" : Colors.light.tint,
               }}
             >
-              {status}
+              {each_status}
             </Text>
           </Pressable>
         ))}
       </View>
     </View>
   );
-}
+};
 
 export default StatusSelectorListItem
