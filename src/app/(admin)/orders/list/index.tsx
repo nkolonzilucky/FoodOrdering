@@ -1,6 +1,8 @@
 import { useAdminOrderList } from "@/api/orders";
 import OrderListItem from "@/components/OrderListItem";
-import React from "react";
+import { supabase } from "@/lib/supabase";
+import { useQueryClient } from "@tanstack/react-query";
+import React, { useEffect } from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 const OrdersTab = () => {
@@ -9,6 +11,22 @@ const OrdersTab = () => {
     isLoading,
     error,
   } = useAdminOrderList({ archived: false });
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const channels = supabase
+      .channel("custom-insert-channel")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "orders" },
+        (payload) => {
+          console.log("Change received!", payload);
+          queryClient.invalidateQueries({ queryKey: ["orders"] });
+        }
+      )
+      .subscribe();
+  }, []);
 
   if (isLoading) {
     return <ActivityIndicator />;

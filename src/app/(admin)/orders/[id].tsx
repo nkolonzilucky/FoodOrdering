@@ -41,7 +41,9 @@ const OrderDetailsScreen = () => {
         renderItem={({ item }) => <OrderItemListItem orderItem={item} />}
         contentContainerStyle={{ gap: 10, margin: 10, borderRadius: 20 }}
         ListHeaderComponent={() => <OrderListItem order={order} />}
-        ListFooterComponent={() => <StatusSelectorListItem order={order} />}
+        ListFooterComponent={() => (
+          <StatusSelectorListItem order={order} updateStatus={updateStatus} />
+        )}
       />
     </View>
   );

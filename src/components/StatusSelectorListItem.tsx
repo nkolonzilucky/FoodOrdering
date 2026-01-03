@@ -5,9 +5,13 @@ import { Pressable, Text, View } from "react-native";
 
 type OrderListItemProps = {
   order: Tables<"orders">;
+  updateStatus: (status: string) => void;
 };
 
-const StatusSelectorListItem = ({ order }: OrderListItemProps) => {
+const StatusSelectorListItem = ({
+  order,
+  updateStatus,
+}: OrderListItemProps) => {
   const [status, setStatus] = useState(order.status);
   return (
     <View>
@@ -16,7 +20,9 @@ const StatusSelectorListItem = ({ order }: OrderListItemProps) => {
         {OrderStatusList.map((each_status) => (
           <Pressable
             key={each_status}
-            onPress={() => setStatus(each_status)}
+            onPress={() => {
+              updateStatus(status);
+            }}
             style={{
               borderColor: Colors.light.tint,
               borderWidth: 1,
@@ -24,12 +30,15 @@ const StatusSelectorListItem = ({ order }: OrderListItemProps) => {
               borderRadius: 5,
               marginVertical: 10,
               backgroundColor:
-                status === each_status ? Colors.light.tint : "transparent",
+                order.status === each_status
+                  ? Colors.light.tint
+                  : "transparent",
             }}
           >
             <Text
               style={{
-                color: status === each_status ? "white" : Colors.light.tint,
+                color:
+                  order.status === each_status ? "white" : Colors.light.tint,
               }}
             >
               {each_status}
