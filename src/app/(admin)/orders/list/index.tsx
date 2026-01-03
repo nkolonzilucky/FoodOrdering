@@ -15,7 +15,7 @@ const OrdersTab = () => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    const channels = supabase
+    const ordersSubscription = supabase
       .channel("custom-insert-channel")
       .on(
         "postgres_changes",
@@ -26,6 +26,10 @@ const OrdersTab = () => {
         }
       )
       .subscribe();
+    // this will be called when unmounting the component
+    return () => {
+      ordersSubscription.unsubscribe();
+    };
   }, []);
 
   if (isLoading) {
