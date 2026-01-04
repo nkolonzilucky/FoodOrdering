@@ -16,7 +16,12 @@ const RemoteImage = ({ path, fallback, ...imageProps }: RemoteImageProps) => {
       setImage("");
       const { data, error } = await supabase.storage
         .from("product-images")
-        .download(path);
+        .download(path, {
+          transform: {
+            width: 50,
+            height: 50,
+          },
+        });
 
       if (error) {
         console.log(error);
