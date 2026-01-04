@@ -49,6 +49,7 @@ const ProductDetailsScreen = () => {
         path={product?.image}
         fallback={defaultPizzaImage}
         style={styles.image}
+        resizeMode="contain"
       />
 
       <Text>Select size</Text>

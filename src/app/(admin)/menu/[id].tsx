@@ -63,6 +63,7 @@ const ProductDetailsScreen = () => {
         path={product?.image}
         fallback={defaultPizzaImage}
         style={styles.image}
+        resizeMode="contain"
       />
       <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
