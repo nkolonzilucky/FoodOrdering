@@ -1,14 +1,15 @@
+import Button from "@/components/Button";
 import { supabase } from "@/lib/supabase";
 import React from "react";
-import { Button, View } from "react-native";
+import { View } from "react-native";
 
 const ProfileScreen = () => {
   return (
     <View>
       <Button
-        title="Sign out"
-        onPress={async () => {
-          await supabase.auth.signOut();
+        text="Sign out"
+        onPress={() => {
+          supabase.auth.signOut();
         }}
       />
     </View>
